@@ -1,0 +1,22 @@
+class Solution {
+    public int Atmost(int arr[], int k) {
+        int sum = 0;
+        int ans = 0;
+        int i = 0;
+        for (int j = 0; j < arr.length; j++) {
+            sum += arr[j];
+            
+            while (sum > k && i<=j) {
+                sum -= arr[i];
+                i++;
+            }
+            
+            ans += j - i + 1;
+        }
+        return ans;
+    }
+    
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        return Atmost(nums, goal) - Atmost(nums, goal - 1);
+    }
+}
